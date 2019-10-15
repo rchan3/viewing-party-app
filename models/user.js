@@ -6,7 +6,11 @@ var userSchema = new Schema({
         type:String,
         required: true
     },
-    googleID: String
+    googleID: String,
+    parties: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'Party' 
+    }]
 });
 
 module.exports = mongoose.model('User', userSchema); 

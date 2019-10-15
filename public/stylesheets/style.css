@@ -1,8 +1,18 @@
 body {
   padding: 50px;
+  padding-top: 2vh;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+.loginout{
+float: right;
+}
+
+li {
+list-style: none;
 }

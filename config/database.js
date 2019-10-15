@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/project-2',{
-    useNewUrlParser:true
+mongoose.connect(process.env.DATABASE_URL,{
+    useNewUrlParser:true,useUnifiedTopology: true 
 });
 
 var db = mongoose.connection;

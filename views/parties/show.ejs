@@ -17,7 +17,8 @@
                         <%= party.date.toLocaleString('en',{month:'long',year:'numeric', day:'numeric'}) %>
                 </h1> 
         </div>
-    
+        <%= user.id %>
+        <%= party.creatorId.toString %>
     <h2>
             <%= party.name %>
             <% if(user) { %>

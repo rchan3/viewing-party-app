@@ -15,6 +15,10 @@ var partySchema = new Schema({
         ref: 'User',
         required: true
     },
+    creatorId: {
+        type:String,
+        required:true
+    },
     name: {
         type:String,
         required: true
@@ -29,6 +33,10 @@ var partySchema = new Schema({
     },
     address: {
         type:String
+    },
+    attendees: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User'
     },
     comments:[commentsSchema]
 });

@@ -5,14 +5,14 @@ const create = (req, res) => {
     for (let key in req.body) {
       if (req.body[key] === '') delete req.body[key];
     }
-    
+
     var party = new Party({
         name: req.body.name,
         date:req.body.date,
         type:req.body.type,
         address:req.body.address,
-        creator: req.user           
-        
+        creator: req.user,           
+        creatorId: req.user._id
     });
     party.save(function(err) {
         console.log(party);
@@ -24,6 +24,15 @@ const create = (req, res) => {
     });
   }
 
+  function show(req, res) {
+    Party.findById(req.params.id).populate('creator').exec( function(err, party) {
+        if (!party) {
+          return res.redirect('/parties');
+        }   
+        res.render('parties/show', { user:req.user,title: 'Party Detail', party });
+    });
+  }  
+
   const index = (req, res) => {
     Party.find({}).exec(function(err, parties) {
       if (err) {
@@ -31,11 +40,12 @@ const create = (req, res) => {
       }
       return res.render('parties/index', { user:req.user,title:`All Parties`,parties });
     });
-  };
+  }
 
   module.exports = {
     create,
-    index
+    index,
+    show
   }
 
 

@@ -7,8 +7,12 @@
                 <!-- if the party creator name matches up with the current user then a delete button will appear -->
                 <% if (user.name === party.creator.name) { %>
                         <!-- tried user._id===party.creatorId but userid changes every login -->
-                        <a href="" class="btn btn-info">delete event</a>
-                        <a href="" class="btn btn-info">edit event</a>
+                        <form action="/parties/<%= party._id %>?_method=DELETE" method="POST" class="page-show-form">
+                                <button type="submit"class="btn btn-info">delete event</button>
+                        </form>
+                        <form action="" class="page-show-form">
+                                <a href="" class="btn btn-info">edit event</a>
+                        </form>
                         <% } %>
                 <!-- if not the party creator then the option to attend the event will show -->
                 <% if (user.name !== party.creator.name)  { %>
@@ -54,8 +58,6 @@
                 <p><%= a.name %></p>
         <% }); %>
         <% } %>
-</div>
-<div>
 
         <% if(party.comments.length) { %>
                 there are comments

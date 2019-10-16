@@ -24,6 +24,17 @@ const create = (req, res) => {
       res.redirect('/parties');
     });
   }
+  
+  
+  const deleteParty = (req, res) => {
+    Party.findById(req.params.id, function (err, doc) {
+      if (err) {
+          // handle error
+      }
+
+      doc.remove();
+    res.redirect('/parties');
+  })}
 
   function show(req, res) {
     Party.findById(req.params.id).populate('creator').populate('attendees').exec( function(err, party) {
@@ -45,6 +56,7 @@ const create = (req, res) => {
 
   module.exports = {
     create,
+    delete: deleteParty,
     index,
     show
   }

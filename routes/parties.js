@@ -11,9 +11,11 @@ router.get('/new-party', function(req, res, next) {
     res.render('parties/newParty', {user:req.user, title: `Create a Party`});
   });
 
-  router.get('/:id', partiesCtrl.show);
+router.get('/:id', partiesCtrl.show);
   
 router.post('/new-party',partiesCtrl.create);
+
+router.delete('/:id', partiesCtrl.delete);
 
 router.get('/auth/google', passport.authenticate(
   'google',

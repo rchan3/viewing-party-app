@@ -4,12 +4,14 @@
         <div>
                 <!-- check if user first-otherwise will return an error -->
                 <% if(user) { %>
-                <!-- if the party creator ID matches up with the current user then a delete button will appear. user._id is a string and creatorId is an object -->
-                <% if (user._id === party.creatorId.toString()) { %>
+                <!-- if the party creator name matches up with the current user then a delete button will appear -->
+                <% if (user.name === party.creator.name) { %>
+                        <!-- tried user._id===party.creatorId but userid changes every login -->
                         <a href="" class="btn btn-info">delete event</a>
+                        <a href="" class="btn btn-info">edit event</a>
                         <% } %>
                 <!-- if not the party creator then the option to attend the event will show -->
-                <% if (user._id !== party.creatorId.toString())  { %>
+                <% if (user.name !== party.creator.name)  { %>
                         <a href="" class="btn btn-info">attend event</a>
                         <% }} %>
                 <!-- date of event in 'month dd/yyyy' format -->
@@ -17,10 +19,7 @@
                         <%= party.date.toLocaleString('en',{month:'long',year:'numeric', day:'numeric'}) %>
                 </h1> 
         </div>
-        <%if (user) {%>
-        <%= user._id %>
-        <% } %>
-        <%= party.creatorId.toString() %>
+
     <h2>
             <%= party.name %>
             <% if(user) { %>
@@ -49,7 +48,12 @@
                              
     <% } }%>
                 </h4>
-    
+    <% if (user) {%>
+        <h4><b>Attending</b></h4>
+        <% party.attendees.forEach((a,idx) => { %>
+                <p><%= a.name %></p>
+        <% }); %>
+        <% } %>
 </div>
 <div>
 

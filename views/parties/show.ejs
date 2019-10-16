@@ -1,9 +1,60 @@
 <%- include('../partials/header') %>
 
 <div id="show-container">
-<h1><% party.name %></h1>
+        <div>
+                <!-- check if user first-otherwise will return an error -->
+                <% if(user) { %>
+                <!-- if the party creator ID matches up with the current user then a delete button will appear. user._id is a string and creatorId is an object -->
+                <% if (user._id === party.creatorId.toString()) { %>
+                        <a href="" class="btn btn-info">delete event</a>
+                        <% } %>
+                <!-- if not the party creator then the option to attend the event will show -->
+                <% if (user._id !== party.creatorId.toString())  { %>
+                        <a href="" class="btn btn-info">attend event</a>
+                        <% }} %>
+                <!-- date of event in 'month dd/yyyy' format -->
+                <h1>
+                        <%= party.date.toLocaleString('en',{month:'long',year:'numeric', day:'numeric'}) %>
+                </h1> 
+        </div>
+    
+    <h2>
+            <%= party.name %>
+            <% if(user) { %>
+            @
+            <%= party.date.toLocaleString('en',{ hour:'numeric', minute: '2-digit'}) %>
+            <% } %>
+    </h2>
+    <h3>
+            <% if(user) { %>
+        Hosted By: <%= party.creator.name %>
+        <% } %>
+    </h3>
+    <h4>
+            <%= party.type %> 
+            Party 
+            <% if(user) { %>
+            at
+            <% if (party.address.includes("http")) { %>
+                <a href="<%= party.address %>" target="_blank">
+                <%= party.address %>
+                </a>
+            <% }  else { %>
+                <a href="https://www.google.com/maps/search/<%= party.address.split(' ').join('+') %>" target="_blank">
+                        <%= party.address %>
+                </a>
+                             
+    <% } }%>
+                </h4>
+    
+</div>
+<div>
+
+        <% if(party.comments.length) { %>
+                there are comments
+        <% } %>
 </div>
 
 <%- include('../partials/footer') %>
-   
+
 

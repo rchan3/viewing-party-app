@@ -14,6 +14,7 @@ const create = (req, res) => {
         creator: req.user,           
         creatorId: req.user._id
     });
+    party.attendees.push(req.user);
     party.save(function(err) {
         console.log(party);
       // one way to handle errors
@@ -25,7 +26,7 @@ const create = (req, res) => {
   }
 
   function show(req, res) {
-    Party.findById(req.params.id).populate('creator').exec( function(err, party) {
+    Party.findById(req.params.id).populate('creator').populate('attendees').exec( function(err, party) {
         if (!party) {
           return res.redirect('/parties');
         }   

@@ -34,10 +34,10 @@ var partySchema = new Schema({
     address: {
         type:String
     },
-    attendees: {
+    attendees: [{
         type: Schema.Types.ObjectId, 
         ref: 'User'
-    },
+    }],
     comments:[commentsSchema]
 });
 

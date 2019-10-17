@@ -22,19 +22,19 @@
                         <%= party.date.toLocaleString('en',{month:'long',year:'numeric', day:'numeric'}) %>
                 </h1> 
         </div>
-
-    <h2>
+        <!-- name of event at hh:mm AM/PM -->
+        <h2>
             <%= party.name %>
             <% if(user) { %>
             @
             <%= party.date.toLocaleString('en',{ hour:'numeric', minute: '2-digit'}) %>
             <% } %>
-    </h2>
-            <% if(user) { %>
+        </h2>
+        <% if(user) { %>
                 <h3>
                 Hosted By: <%= party.creator.name %>
-    </h3>
-    <% } %>
+                </h3>
+        <% } %>
 
     <h4>
             <%= party.type %> 
@@ -48,27 +48,33 @@
             <% }  else { %>
                 <a href="https://www.google.com/maps/search/<%= party.address.split(' ').join('+') %>" target="_blank">
                         <%= party.address %>
-                </a>
-                             
+                </a>                           
     <% } }%>
-                </h4>
+        </h4>
+
     <% if (user) {%>
         <h4><b>Attending</b></h4>
         <% party.attendees.forEach((a,idx) => { %>
                 <p><%= a.name %></p>
         <% });} %>
-<section id="show-page-comments">
+
+        <!-- display total number of comments -->
+        <section id="show-page-comments">
         <% if(party.comments.length) { %>  
-                <h4 id="show-page-comments-main">Comments</h4>
                 <p>
+                <!-- if comment count is 1 then display "comment" -->
+                        <%=party.comments.length%>
                                 <% if(party.comments.length===1) { %>                  
-                        <%=party.comments.length%> Comment
+                         Comment
+                         <!-- if comment count is more than 1 then display "comments" -->
                         <% } if(party.comments.length>1) { %>
-                                <%=party.comments.length%> Comments
+                                 Comments
                                 <% } %>
                 </p>      
-<% } %>
-<% if(party.comments.length) { %>
+        <% } %>
+
+        <!-- comments display -->
+        <% if(party.comments.length) { %>
                 <% party.comments.forEach((c,idx) => { %>
                         <p class="show-comment-content">
                                 <%= c.content %>
@@ -78,12 +84,22 @@
                         </p>
                 <% }); %>
         <% } %>
+
+        <!-- comments input for users -->
         <% if(user) { %>
         <form action="/parties/<%=party._id%>/new-comment" method="POST">
                 <input type="text" name="comment" id="" placeholder="comment here">
                 <button id="comment-post-btn" class=" btn btn-info" type="submit">post</button>
-                </form>
-                <% } %>
+        </form>
+        <% } %>
+
+        <!-- comments input for guests -->
+        <% if(!user) { %>
+        <form action="/parties/<%=party._id%>/new-anoncomment" method="POST">
+                <input type="text" name="comment" id="" placeholder="comment here">
+                <button id="comment-post-btn" class=" btn btn-info" type="submit">post</button>
+        </form>
+        <% } %>
         </section>
 </div>
 

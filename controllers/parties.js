@@ -40,6 +40,18 @@ const create = (req, res) => {
       });
     })}
   
+    function createAnonComment(req, res) {
+      console.log("create comment");
+      Party.findById(req.params.id).exec( function(err, party) {
+        let temp = {
+          content: req.body.comment,
+          author: "Anonymous"
+        }
+        party.comments.push(temp);
+        party.save(function(err) {
+          res.redirect(`/parties/${party._id}`);
+        });
+      })}
   
   const deleteParty = (req, res) => {
     console.log("delparty");
@@ -103,6 +115,7 @@ const create = (req, res) => {
     createEdit,
     delete: deleteParty,
     createComment,
+    createAnonComment,
     index,
     show,
     updateShow

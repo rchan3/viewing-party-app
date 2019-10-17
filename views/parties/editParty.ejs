@@ -2,9 +2,7 @@
 
 <main class="text-center" >
     <form action="/parties/<%= party._id %>/edit" method="post" class="w-40 p-3">
-        <!-- string of event date -->
-        <!-- <%= party.date.toLocaleString('en-GB', { year:"numeric"})%>-<%= party.date.toLocaleString('en-GB', { month:"2-digit"})%>-<%= party.date.toLocaleString('en-GB', { day:"2-digit"})%>T<%= party.date.toLocaleString('en-GB',{ hour:"2-digit",minute:"2-digit", hour12:false})%><br>
- -->
+   
         <h1>Edit Party</h1>
         <div class="form-group">
             <label for="name">Event Name:</label>
@@ -17,9 +15,11 @@
          <div class="form-group">
             <label id="form-type">Event Type:</label>
             <!-- different default checked based on current value -->
+            <!-- if current value is online then the default checked value will be online -->
             <% if(party.type==="Online") {%>
             <input class="form-check-input" type="radio" name="type" value="Online" checked>Online
             <input class="form-check-input" type="radio" name="type" value="Offline">Offline
+            <!-- if current value is offline then the default checked value will be offline -->
             <% } else {%>
                 <input class="form-check-input" type="radio" name="type" value="Online">Online
             <input class="form-check-input" type="radio" name="type" value="Offline" checked>Offline

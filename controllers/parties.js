@@ -12,7 +12,7 @@ const create = (req, res) => {
         type:req.body.type,
         address:req.body.address,
         creator: req.user,           
-        creatorId: req.user._id
+        creatorId: req.user.googleId
     });
     party.attendees.push(req.user);
     party.save(function(err) {
@@ -24,6 +24,19 @@ const create = (req, res) => {
       res.redirect('/parties');
     });
   }
+  
+
+  function createComment(req, res) {
+    Party.findById(req.params.id).exec( function(err, party) {
+      let temp = {
+        content: req.body.comment,
+        author: req.user.name
+      }
+      party.comments.push(temp);
+      party.save(function(err) {
+        res.redirect(`/parties/${party._id}`);
+      });
+    })}
   
   
   const deleteParty = (req, res) => {
@@ -57,8 +70,9 @@ const create = (req, res) => {
   module.exports = {
     create,
     delete: deleteParty,
+    createComment,
     index,
-    show
+    show,
   }
 
 

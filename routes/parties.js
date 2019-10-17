@@ -17,6 +17,8 @@ router.post('/new-party',partiesCtrl.create);
 
 router.delete('/:id', partiesCtrl.delete);
 
+router.post('/:id/new-comment', partiesCtrl.createComment);
+
 router.get('/auth/google', passport.authenticate(
   'google',
   { scope: ['profile', 'email'] }

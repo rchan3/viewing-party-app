@@ -4,9 +4,8 @@
         <div>
                 <!-- check if user first-otherwise will return an error -->
                 <% if(user) { %>
-                <!-- if the party creator name matches up with the current user then a delete button will appear -->
-                <% if (user.name === party.creator.name) { %>
-                        <!-- tried user._id===party.creatorId but userid changes every login -->
+                <!-- if the party creator id matches up with the current userid then a delete button will appear -->
+                <% if (user.googleId === party.creatorId) { %>
                         <form action="/parties/<%= party._id %>?_method=DELETE" method="POST" class="page-show-form">
                                 <button type="submit"class="btn btn-info">delete event</button>
                         </form>
@@ -15,7 +14,7 @@
                         </form>
                         <% } %>
                 <!-- if not the party creator then the option to attend the event will show -->
-                <% if (user.name !== party.creator.name)  { %>
+                <% if (user.googleId !== party.creatorId)  { %>
                         <a href="" class="btn btn-info">attend event</a>
                         <% }} %>
                 <!-- date of event in 'month dd/yyyy' format -->
@@ -31,11 +30,12 @@
             <%= party.date.toLocaleString('en',{ hour:'numeric', minute: '2-digit'}) %>
             <% } %>
     </h2>
-    <h3>
             <% if(user) { %>
-        Hosted By: <%= party.creator.name %>
-        <% } %>
+                <h3>
+                Hosted By: <%= party.creator.name %>
     </h3>
+    <% } %>
+
     <h4>
             <%= party.type %> 
             Party 
@@ -56,12 +56,35 @@
         <h4><b>Attending</b></h4>
         <% party.attendees.forEach((a,idx) => { %>
                 <p><%= a.name %></p>
-        <% }); %>
+        <% });} %>
+<section id="show-page-comments">
+        <% if(party.comments.length) { %>  
+                <h4 id="show-page-comments-main">Comments</h4>
+                <p>
+                                <% if(party.comments.length===1) { %>                  
+                        <%=party.comments.length%> Comment
+                        <% } if(party.comments.length>1) { %>
+                                <%=party.comments.length%> Comments
+                                <% } %>
+                </p>      
+<% } %>
+<% if(party.comments.length) { %>
+                <% party.comments.forEach((c,idx) => { %>
+                        <p class="show-comment-content">
+                                <%= c.content %>
+                        </p>
+                        <p class="show-comment-author">
+                                posted by <%= c.author%>
+                        </p>
+                <% }); %>
         <% } %>
-
-        <% if(party.comments.length) { %>
-                there are comments
-        <% } %>
+        <% if(user) { %>
+        <form action="/parties/<%=party._id%>/new-comment" method="POST">
+                <input type="text" name="comment" id="" placeholder="comment here">
+                <button id="comment-post-btn" class=" btn btn-info" type="submit">post</button>
+                </form>
+                <% } %>
+        </section>
 </div>
 
 <%- include('../partials/footer') %>

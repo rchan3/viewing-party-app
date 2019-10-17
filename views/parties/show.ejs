@@ -13,10 +13,24 @@
                                 <button type="submit"class="btn btn-info">edit event</button>
                         </form>
                         <% } %>
+
                 <!-- if not the party creator then the option to attend the event will show -->
                 <% if (user.googleId !== party.creatorId)  { %>
-                        <a href="" class="btn btn-info">attend event</a>
-                        <% }} %>
+                        <% let eventGoing = 0 %>
+                        <!-- if user is already attending -->
+                        <% party.attendees.forEach((a,idx) => { %>
+                                <% if(a.googleId===user.googleId) {%>
+                            <%eventGoing=1%>            
+                        <% }}) %> 
+                        
+                        <% if(eventGoing== 1) { %>
+                                <a href="/parties/<%= party._id %>/attendees/<%= user.googleId %>/cancelAttend" class="btn btn-info">stop attending</a>
+                                <%} else {%>
+                                        <a href="/parties/<%= party._id%>/attend" class="btn btn-info">attend event</a>
+                                <% } %>
+                <% } %>
+                <% }; %>
+
                 <!-- date of event in 'month dd/yyyy' format -->
                 <h1>
                         <%= party.date.toLocaleString('en',{month:'long',year:'numeric', day:'numeric'}) %>

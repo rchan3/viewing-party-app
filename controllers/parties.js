@@ -64,6 +64,41 @@ const create = (req, res) => {
     res.redirect('/parties');
   })}
 
+  const attendEvent = (req, res) => {
+    console.log("attending...");
+    Party.findById(req.params.id, function (err, party) {
+      party.attendees.push(req.user);
+
+       party.save(function (err) {
+    console.log(party);
+      if (err) {
+          // handle error
+          res.redirect('/parties');
+        }      
+      res.redirect(`/parties/${party._id}`);
+    })})};
+
+    const cancelAttendEvent = (req, res) => {
+      console.log("stop attending");
+      Party.findById(req.params.id, function (err, party) {
+        // console.log(req.user._id)
+        if (err) {
+          // handle error
+          res.redirect('/parties');
+        }
+        if(party.attendees.length < 2){
+          return console.log("ATTENDEE CANNOT BE CANCELED")
+        } else{
+          party.attendees.pull({_id: req.user._id})           
+        }
+      
+         party.save(function (err) {
+           if (err) console.log(err)
+      console.log(party.attendees);
+              
+        res.redirect(`/parties/${party._id}`);
+      })})};
+
   const updateShow = (req, res) => {
     console.log("update");
     Party.findById(req.params.id, function (err, party) {
@@ -118,7 +153,9 @@ const create = (req, res) => {
     createAnonComment,
     index,
     show,
-    updateShow
+    updateShow,
+    attendEvent,
+    cancelAttendEvent
   }
 
 

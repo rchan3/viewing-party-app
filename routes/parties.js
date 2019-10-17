@@ -25,11 +25,14 @@ router.post('/:id/new-anoncomment', partiesCtrl.createAnonComment);
 
 router.post('/:id/edit', partiesCtrl.updateShow)
 
+router.get('/:id/attend', partiesCtrl.attendEvent);
+
+router.get('/:id/attendees/:userGoogleId/cancelAttend', partiesCtrl.cancelAttendEvent);
+
 router.get('/auth/google', passport.authenticate(
   'google',
   { scope: ['profile', 'email'] }
 ));
-
 
 router.get('/oauth2callback', passport.authenticate(
   'google',

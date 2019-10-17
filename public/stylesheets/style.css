@@ -8,7 +8,9 @@ a {
   color: #00B7FF;
   text-decoration: none;
 }
-
+input{
+  text-align: center;
+}
 .loginout{
 float: right;
 }
@@ -28,7 +30,7 @@ form{
   margin: 0 auto;
 }
 #form-date{
-  width: 30%;
+  width: 40%;
   margin: 0 auto;
 }
 ::-webkit-input-placeholder {
@@ -60,4 +62,21 @@ form.page-show-form{
 
 .party-show-page{
   text-align: center;
+}
+
+#comment-post-btn{
+  padding: 1px 6px;
+}
+
+#show-page-comments-main{
+  padding-top: 5vh;
+}
+
+.show-comment-author{
+  font-size: 10px;
+}
+
+#show-page-comments{
+  width: 40%;
+  margin: 0 auto;
 }

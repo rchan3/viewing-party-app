@@ -6,7 +6,7 @@ var userSchema = new Schema({
         type:String,
         required: true
     },
-    googleID: String,
+    googleId: String,
     parties: [{
         type: Schema.Types.ObjectId, 
         ref: 'Party' 

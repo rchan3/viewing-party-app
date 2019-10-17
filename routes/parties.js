@@ -21,6 +21,8 @@ router.get('/:id/update', partiesCtrl.createEdit);
 
 router.post('/:id/new-comment', partiesCtrl.createComment);
 
+router.post('/:id/edit', partiesCtrl.updateShow)
+
 router.get('/auth/google', passport.authenticate(
   'google',
   { scope: ['profile', 'email'] }

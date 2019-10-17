@@ -2,6 +2,7 @@ const Party = require('../models/party');
 const User = require('../models/user');
 
 const create = (req, res) => {
+  console.log("create");
     for (let key in req.body) {
       if (req.body[key] === '') delete req.body[key];
     }
@@ -27,6 +28,7 @@ const create = (req, res) => {
   
 
   function createComment(req, res) {
+    console.log("create comment");
     Party.findById(req.params.id).exec( function(err, party) {
       let temp = {
         content: req.body.comment,
@@ -40,6 +42,7 @@ const create = (req, res) => {
   
   
   const deleteParty = (req, res) => {
+    console.log("delparty");
     Party.findById(req.params.id, function (err, party) {
       if (err) {
           // handle error
@@ -49,7 +52,25 @@ const create = (req, res) => {
     res.redirect('/parties');
   })}
 
+  const updateShow = (req, res) => {
+    console.log("update");
+    Party.findById(req.params.id, function (err, party) {
+      party.name = req.body.name;
+      party.date = req.body.date;
+      party.type = req.body.type;
+      party.address = req.body.address;
+
+       party.save(function (err) {
+    console.log(party);
+      if (err) {
+          // handle error
+          res.redirect('/parties');
+        }      
+      res.redirect(`/parties/${party._id}`);
+    })})}
+
   const createEdit = (req, res) => {
+    console.log("to edit party");
     Party.findById(req.params.id, function (err, party) {
       if (err) {
           // handle error
@@ -58,6 +79,7 @@ const create = (req, res) => {
     })}
 
   function show(req, res) {
+    console.log("show");
     Party.findById(req.params.id).populate('creator').populate('attendees').exec( function(err, party) {
         if (!party) {
           return res.redirect('/parties');
@@ -67,6 +89,7 @@ const create = (req, res) => {
   }  
 
   const index = (req, res) => {
+    console.log("index");
     Party.find({}).exec(function(err, parties) {
       if (err) {
         // handle error
@@ -81,7 +104,8 @@ const create = (req, res) => {
     delete: deleteParty,
     createComment,
     index,
-    show
+    show,
+    updateShow
   }
 
 

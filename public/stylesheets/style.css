@@ -78,3 +78,11 @@ form.page-show-form{
   margin: 0 auto;
   padding-top: 5vh;
 }
+#show-page-comments form{
+width: 50%;
+}
+
+
+#show-page-comments input{
+  margin-top: 2vh;
+}

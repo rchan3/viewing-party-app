@@ -5,9 +5,11 @@
             <h2>ALL PARTIES</h2>
             <%if(parties.length===0) {%>
                 <p>there are no parties</p>
+                <%if(user) {%>
                 <a href="/parties/new-party">
                     create a party here
                 </a>
+                <% } %>
                 <% } %>
             <% parties.forEach((p,idx) => { %>
             <h3> <%= p.name %> @ <%= p.date.toLocaleString('en',{month:'2-digit',year:'numeric', day:'2-digit', hour:'numeric', minute: '2-digit'}) %> </h3>

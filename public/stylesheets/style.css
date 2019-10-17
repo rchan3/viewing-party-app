@@ -68,15 +68,13 @@ form.page-show-form{
   padding: 1px 6px;
 }
 
-#show-page-comments-main{
-  padding-top: 5vh;
-}
-
 .show-comment-author{
   font-size: 10px;
 }
 
 #show-page-comments{
+  border-top: 1px solid black;
   width: 40%;
   margin: 0 auto;
+  padding-top: 5vh;
 }

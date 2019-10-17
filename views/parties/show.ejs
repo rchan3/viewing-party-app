@@ -8,9 +8,9 @@
                 <% if (user.googleId === party.creatorId) { %>
                         <form action="/parties/<%= party._id %>?_method=DELETE" method="POST" class="page-show-form">
                                 <button type="submit"class="btn btn-info">delete event</button>
-                        </form>
-                        <form action="" class="page-show-form">
-                                <a href="" class="btn btn-info">edit event</a>
+                        </form> 
+                        <form action="/parties/<%= party._id %>/update" class="page-show-form">
+                                <button type="submit"class="btn btn-info">edit event</button>
                         </form>
                         <% } %>
                 <!-- if not the party creator then the option to attend the event will show -->

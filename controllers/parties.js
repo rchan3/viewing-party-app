@@ -40,14 +40,22 @@ const create = (req, res) => {
   
   
   const deleteParty = (req, res) => {
-    Party.findById(req.params.id, function (err, doc) {
+    Party.findById(req.params.id, function (err, party) {
       if (err) {
           // handle error
       }
 
-      doc.remove();
+      party.remove();
     res.redirect('/parties');
   })}
+
+  const createEdit = (req, res) => {
+    Party.findById(req.params.id, function (err, party) {
+      if (err) {
+          // handle error
+      }      
+      res.render('parties/editParty', {user:req.user,party, title: `Edit Party`})
+    })}
 
   function show(req, res) {
     Party.findById(req.params.id).populate('creator').populate('attendees').exec( function(err, party) {
@@ -69,10 +77,11 @@ const create = (req, res) => {
 
   module.exports = {
     create,
+    createEdit,
     delete: deleteParty,
     createComment,
     index,
-    show,
+    show
   }
 
 

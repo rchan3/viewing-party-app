@@ -17,6 +17,8 @@ router.post('/new-party',partiesCtrl.create);
 
 router.delete('/:id', partiesCtrl.delete);
 
+router.get('/:id/update', partiesCtrl.createEdit);
+
 router.post('/:id/new-comment', partiesCtrl.createComment);
 
 router.get('/auth/google', passport.authenticate(

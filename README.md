@@ -7,10 +7,11 @@
 
 #### Show page as a User-Event Creator
 ![alt text](https://i.imgur.com/2A8AiCp.png " ")
-#### Show page as a guest
-![alt text](https://i.imgur.com/lYGyqhR.png " ")
 #### Show page as a User
 ![alt text](https://i.imgur.com/PiwLEAJ.png " ")
+#### Show page as a guest
+![alt text](https://i.imgur.com/lYGyqhR.png " ")
+
 
 ## Technologies Used
 

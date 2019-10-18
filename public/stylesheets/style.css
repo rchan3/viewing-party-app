@@ -87,6 +87,7 @@ form.page-show-form{
 .party-show-page div{
   width: 50%;
   margin: 0 auto;
+  padding-bottom: 2vh;
   border-bottom: 1px solid #b8ccc6;
 }
 

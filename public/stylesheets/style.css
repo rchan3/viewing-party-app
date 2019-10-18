@@ -1,22 +1,36 @@
 body {
-  padding: 50px;
-  padding-top: 2vh;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #003d60;
+  background-color: #FFFAFA;
+}
+header{
+  background-color: #CCCCCC;
+  padding: 0 10vw;
+}
+nav.navbar{
+  margin: 0;
+  height: 100%;;
+}
+
+h2{
+  margin-top: 0;
+  text-decoration: underline;
 }
 
 a {
-  color: #00B7FF;
+  color: #00aab7;
   text-decoration: none;
 }
 input{
   text-align: center;
 }
 .loginout{
-float: right;
+  float: right;
 }
 
 li {
-list-style: none;
+  list-style: none;
 }
 form h1{
   margin-bottom: 4vh;
@@ -51,6 +65,11 @@ form{
 div#show-container{
   margin: 0 auto;
   text-align: center;
+  padding-top: 2vh;
+}
+
+div#show-container h2{
+  text-decoration: none;
 }
 #show-container div{
   margin: 0 auto;
@@ -62,10 +81,22 @@ form.page-show-form{
 
 .party-show-page{
   text-align: center;
+  padding-top: 2vh;
+}
+
+.party-show-page div{
+  width: 50%;
+  margin: 0 auto;
+  border-bottom: 1px solid #b8ccc6;
 }
 
 #comment-post-btn{
   padding: 1px 6px;
+  background-color: #00aab7;
+}
+
+.btn{
+  background-color:  #00aab7;
 }
 
 .show-comment-author{
@@ -79,10 +110,24 @@ form.page-show-form{
   padding-top: 5vh;
 }
 #show-page-comments form{
-width: 50%;
+  width: 50%;
 }
 
 
 #show-page-comments input{
   margin-top: 2vh;
+}
+
+header nav li a.nav-link:hover{
+  background-color: rgba(255, 255, 255,0.5);
+}
+#show-container button:hover{
+  background-color: rgba(0, 170, 183,0.5);
+}
+
+#index-page h1{
+  margin: 0;
+  font-size: 90px;
+  padding-top: 20vh;
+  text-align: center;
 }

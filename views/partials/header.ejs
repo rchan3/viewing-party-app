@@ -10,38 +10,39 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-    <main>
-        <header>
-            <nav class="navbar">
-                <ul class="nav navbar-nav">
-                    <% if (title !== 'Viewing Parties') {%>
+    <header>
+        <nav class="navbar">
+            <ul class="nav navbar-nav">
+                <% if (title !== 'Viewing Parties') {%>
+                    <li>
+                        <a class="nav-link" href="/">
+                            home
+                        </a>
+                    </li>
+                    <% } %>
+                    <% if (user) {%>
                         <li>
-                            <a class="nav-link" href="/">
-                                home
+                            <a class="nav-link" href="/parties/new-party">
+                                create a party
                             </a>
                         </li>
                         <% } %>
-                        <% if (user) {%>
-                            <li>
-                                <a class="nav-link" href="/parties/new-party">
-                                    create a party
-                                </a>
-                            </li>
-                            <% } %>
-                            <li>
-                                <a class="nav-link" href="/parties">all parties</a>
-                            </li>
-                        </ul>
+                        <li>
+                            <a class="nav-link" href="/parties">all parties</a>
+                        </li>
+                    </ul>
+                    
+                    <ul class="loginout nav navbar-nav">
+                        <li>
+                            <% if (user) {%>
+                                <a class="nav-link" href="/logout">logout</a>
+                                <% } else { %>
+                                    <a class="nav-link" href="/auth/google">login with google</a>
+                                    <% } %>
+                                </li>
+                            </ul>
+                            
+                        </nav>
+                    </header>
+                    <main>
                         
-                        <ul class="loginout nav navbar-nav">
-                            <li>
-                                <% if (user) {%>
-                                    <a class="nav-link" href="/logout">logout</a>
-                                    <% } else { %>
-                                        <a class="nav-link" href="/auth/google">login with google</a>
-                                        <% } %>
-                                    </li>
-                                </ul>
-                                
-                            </nav>
-                        </header>

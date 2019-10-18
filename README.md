@@ -35,6 +35,7 @@ Users can create and join parties and view all the details of an event. Guests c
 
 
 ##### - edit/remove function for the comments
+##### - add an image upload/url function in the make event form
 ##### - add options to the event edit page to blacklist and/or remove other users from the event
 ##### - add category tags to events 
 ##### - filter function to only display certain categories or types
